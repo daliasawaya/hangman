@@ -34,8 +34,24 @@
     color: rgb(247, 237, 247);
 }
 
-.letter:active {
-    background-color: blueviolet;
-    color: rgb(247, 237, 247);
+.guessed {
+    background-color: #ccc; 
+    color: #888; 
+    pointer-events: none; 
+    border: 1px solid rgb(50, 50, 50);
 }
   
+.placeholder-line {
+    width: 30px; 
+    height: 2px; 
+    background-color: black; 
+    margin: 5px; 
+}
+
+#word-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+
