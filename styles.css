@@ -41,12 +41,22 @@
     border: 1px solid rgb(50, 50, 50);
 }
   
-.placeholder-line {
-    width: 30px; 
-    height: 2px; 
-    background-color: black; 
-    margin: 5px; 
+/* Adjust placeholder container positioning */
+#placeholder-container {
+  position: fixed;
+  top: 50%;
+  right: 15%; /* Adjust as needed */
+  transform: translateY(-50%);
 }
+
+.placeholder-line {
+  display: inline-block; /* Display as inline-block to make them behave like lines */
+  width: 35px; /* Set the width of the lines */
+  height: 3px; /* Set the height of the lines */
+  background-color: black;
+  margin: 0 10px; /* Add some margin between the lines */
+}
+
 
 #word-container {
     display: flex;
@@ -54,4 +64,27 @@
     align-items: center; 
     margin-bottom: 20px; 
 }
+
+#correct-letter {
+  margin: 0 15px; /* Add some margin between the lines */
+  font-size: 20px;
+}
+
+/* CSS for hangman image container */
+#hangman-container {
+  position: absolute;
+  top: 50%;
+  left: 10%; /* Adjust the left position as needed */
+  transform: translateY(-50%);
+}
+
+/* CSS for hangman images */
+#hangman-image {
+  width: 400px; /* Set the width of the image */
+  height: auto; /* Maintain aspect ratio */
+  /* Add any other styles you want */
+}
+
+
+
 

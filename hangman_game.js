@@ -5,6 +5,18 @@ let wordLetters;
 let guessedLetters = [];
 let incorrectGuesses = 0;
 let maxIncorrectGuesses = 6;
+let hangmanImageElement;
+
+// Define an array of hangman image filenames
+const hangmanImages = [
+    "images/outline1.png",
+    "images/head2.png",
+    "images/body3.png",
+    "images/rightarm4.png",
+    "images/botharms5.png",
+    "images/rightleg6.png",
+    "images/bothlegs7.png",
+  ];
 
 // Array of words
 let words = ["APPLE", "BANANA", "ORANGE", "STRAWBERRY", "KIWI", "GRAPE", "PINEAPPLE", "WATERMELON", "BLUEBERRY", "MANGO"];
@@ -36,15 +48,50 @@ function generateRandomWord() {
 }
 
 function displayWordPlaceholders(word) {
-    //console.log(word);
-
     wordLetters = word.split("");
-    console.log(wordLetters);
+    const placeholderContainer = document.getElementById('placeholder-container');
+    placeholderContainer.innerHTML = ''; // Clear previous placeholders
 
+    for (let i = 0; i < word.length; i++) {
+        const placeholder = document.createElement('span');
+        placeholder.classList.add("placeholder-line");
+        placeholderContainer.appendChild(placeholder);
+    }
 }
 
+
 function updateHangmanDisplay(){
-    //console.log("updateHangmanDisplay");
+    console.log("updateHangmanDisplay");
+
+    // Update the hangman image source based on the number of incorrect guesses
+    switch(incorrectGuesses){
+        case 0: 
+            hangmanImageElement.src = 'images/outline1.png';
+            break;
+        case 1:
+            hangmanImageElement.src = 'images/head2.png';
+            break;
+        case 2:
+            hangmanImageElement.src = 'images/body3.png';
+            break;
+        case 3:
+            hangmanImageElement.src = 'images/rightarm4.png';
+            break;
+        case 4:
+            hangmanImageElement.src = 'images/botharms5.png';
+            break;
+        case 5:
+            hangmanImageElement.src = 'images/rightleg6.png';
+            break;
+        case 6:
+            hangmanImageElement.src = 'images/bothlegs7.png';
+            break;
+        default:
+            console.log(incorrectGuesses);
+            break;
+    }
+    
+    
 }
 
 //adds event listener to the letters
@@ -64,7 +111,9 @@ function addEventListenerToLetters() {
 
 document.addEventListener('DOMContentLoaded', function() {
     addEventListenerToLetters(); 
+    hangmanImageElement = document.getElementById('hangman-image');
 });
+
 
 //function to handle guessing a letter
 function guessLetter(letter) {
@@ -101,10 +150,22 @@ function guessLetter(letter) {
         // Letter is in the word, update display
         console.log("THE WORD INCLUDES THIS LETTER");
         //updateWordDisplay(letter);
-        wordLetters = wordLetters.filter(l => l !== letter);
-        console.log("Remaining letters in the word:", wordLetters);
 
-        if(wordLetters.length == 0){
+
+        for (let i = 0; i < wordToGuess.length; i++) {
+            if (wordToGuess[i] === letter) {
+                const placeholders = document.querySelectorAll('#placeholder-container .placeholder-line');
+                console.log(placeholders[i]);
+                placeholders[i].textContent = letter; // Replace the placeholder with the guessed letter
+                console.log(placeholders[i].textContent);
+            }
+        }
+
+        // Remove the guessed letter from the wordLetters array
+        wordLetters = wordLetters.filter(l => l !== letter);
+
+        // Check if all letters have been guessed
+        if (wordLetters.length === 0) {
             endGame(true);
         }
 
@@ -121,18 +182,7 @@ function guessLetter(letter) {
         }
     }
 
-    /*for(i=0; i<wordLetters.length; i++){
-        console.log(wordLetters[i]);
-        console.log(letter);
-        if(letter === wordLetters[i]){
-            console.log("letter is in word!");
-        }
-    }*/
-    
-    // Check for win condition
-    /*if (isWordGuessed(wordToGuess, guessedLetters)) {
-        endGame(true);
-    }*/
+
 }
 
 function isWordGuessed(wordToGuess, guessedLetters){
@@ -140,14 +190,31 @@ function isWordGuessed(wordToGuess, guessedLetters){
 }
 
 function endGame(win){
-    if(win){
-        console.log("Congratulations! You guessed the word!");
+    let message;
+    if (win) {
+        message = "Congratulations! You guessed the word!";
+    } else {
+        message = "Sorry! You ran out of guesses. The word was " + wordToGuess;
     }
-    else {
-        console.log("Sorry! You ran out of guesses, starting new game");
+    
+    message += "\n\nDo you want to play again?";
+    
+    if (win) {
+        // If the player wins, show an alert with the message and a "Play Again" button
     }
-    addEventListenerToLetters();
-    resetKeyboard();
+
+    setTimeout(function () {
+        if (confirm(message)) {
+            // If the player clicks "OK", indicating they want to play again, restart the game
+            //startGame();
+            addEventListenerToLetters();
+            resetKeyboard();
+            incorrectGuesses = 0;
+            updateHangmanDisplay();
+        } 
+    }, 1000);
+    
+    
 }
 
 function resetKeyboard() {
