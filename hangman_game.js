@@ -6,6 +6,8 @@ let guessedLetters = [];
 let incorrectGuesses = 0;
 let maxIncorrectGuesses = 6;
 let hangmanImageElement;
+let gamesWon = 0;
+let gamesLost = 0;
 
 // Define an array of hangman image filenames
 const hangmanImages = [
@@ -200,7 +202,10 @@ function endGame(win){
     message += "\n\nDo you want to play again?";
     
     if (win) {
-        // If the player wins, show an alert with the message and a "Play Again" button
+        updateScoreboard(true);
+    }
+    else {
+        updateScoreboard(false);
     }
 
     setTimeout(function () {
@@ -212,7 +217,7 @@ function endGame(win){
             incorrectGuesses = 0;
             updateHangmanDisplay();
         } 
-    }, 1000);
+    }, 500);
     
     
 }
@@ -229,4 +234,15 @@ function resetKeyboard() {
 function removeDuplicates(arr) {
     return arr.filter((item,
         index) => arr.indexOf(item) === index);
+}
+
+// Function to update the scoreboard
+function updateScoreboard(win) {
+    if (win) {
+        gamesWon++;
+    } else {
+        gamesLost++;
+    }
+    document.getElementById('gamesWon').textContent = gamesWon;
+    document.getElementById('gamesLost').textContent = gamesLost;
 }
