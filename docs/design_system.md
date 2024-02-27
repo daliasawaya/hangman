@@ -61,9 +61,3 @@
    - Border Radius: 5px
    - Box Shadow: 0 0 10px rgba(0, 0, 0, 0.1)
    - Font Family: Arial, sans-serif
-
-6. **Placeholder Container**:
-   - Container for the placeholder lines representing each letter in the word to guess.
-   - Positioned on the right side of the screen.
-   - Font size: 20px
-   - Margin: 0 15px
