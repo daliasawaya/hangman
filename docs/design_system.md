@@ -1,4 +1,3 @@
-
 # Design System for Hangman Game
 
 ## Fonts:
@@ -7,14 +6,14 @@
 - **Scoreboard Font**: Arial, sans-serif
 
 ## Colors:
-- **Background Color**: rgb(248, 241, 225)
-- **Letter Background Color**: rgb(229, 186, 229)
-- **Letter Border Color**: blueviolet
-- **Guessed Letter Background Color**: #ccc
-- **Guessed Letter Text Color**: #888
-- **Placeholder Line Color**: black
-- **Title Text Color**: #4CAF50
-- **Scoreboard Background Color**: #ccf7ce
+- **Background Color**: ![rgb(248, 241, 225)](https://via.placeholder.com/15/F8F1E1/000000?text=+)
+- **Letter Background Color**: ![rgb(229, 186, 229)](https://via.placeholder.com/15/E5BAE5/000000?text=+)
+- **Letter Border Color**: ![blueviolet](https://via.placeholder.com/15/8A2BE2/000000?text=+)
+- **Guessed Letter Background Color**: ![#ccc](https://via.placeholder.com/15/cccccc/000000?text=+)
+- **Guessed Letter Text Color**: ![#888](https://via.placeholder.com/15/888888/000000?text=+)
+- **Placeholder Line Color**: ![black](https://via.placeholder.com/15/000000/000000?text=+)
+- **Title Text Color**: ![#4CAF50](https://via.placeholder.com/15/4CAF50/000000?text=+)
+- **Scoreboard Background Color**: ![#ccf7ce](https://via.placeholder.com/15/ccf7ce/000000?text=+)
 
 ## Hangman Images:
 - **File Names**:
@@ -31,7 +30,7 @@
 1. **Title**:
    - **Text Alignment**: Center
    - **Font Size**: 48px
-   - **Text Color**: #4CAF50
+   - **Text Color**: ![#4CAF50](https://via.placeholder.com/15/4CAF50/000000?text=+)
    - **Font Family**: Arial, sans-serif
    - **Text Transform**: Uppercase
    - **Letter Spacing**: 2px
@@ -40,13 +39,13 @@
 2. **Word Display**:
    - Displayed as placeholders for each letter in the word to guess.
    - Font size: 20px
-   - Font color: #000
+   - Font color: ![black](https://via.placeholder.com/15/000000/000000?text=+)
 
 3. **Keyboard**:
    - A row of buttons representing each letter of the alphabet.
-   - Background Color: rgb(229, 186, 229)
-   - Border Color: blueviolet
-   - Font color: blueviolet
+   - Background Color: ![rgb(229, 186, 229)](https://via.placeholder.com/15/E5BAE5/000000?text=+)
+   - Border Color: ![blueviolet](https://via.placeholder.com/15/8A2BE2/000000?text=+)
+   - Font color: ![blueviolet](https://via.placeholder.com/15/8A2BE2/000000?text=+)
    - Font weight: bold
 
 4. **Hangman Image**:
@@ -56,8 +55,9 @@
 
 5. **Scoreboard**:
    - Displays the number of games won and lost.
-   - Background Color: #ccf7ce
+   - Background Color: ![#ccf7ce](https://via.placeholder.com/15/ccf7ce/000000?text=+)
    - Padding: 10px
    - Border Radius: 5px
    - Box Shadow: 0 0 10px rgba(0, 0, 0, 0.1)
    - Font Family: Arial, sans-serif
+
