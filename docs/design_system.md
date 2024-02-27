@@ -16,14 +16,13 @@
 - **Scoreboard Background Color**: ![#ccf7ce](https://via.placeholder.com/15/ccf7ce/000000?text=+)
 
 ## Hangman Images:
-- **File Names**:
-    - **Initial State**: ![Outline](../images/outline1.png)
-    - **After 1 Incorrect Guess**: ![Head](../images/head2.png)
-    - **After 2 Incorrect Guesses**: ![Body](../images/body3.png)
-    - **After 3 Incorrect Guesses**: ![Right Arm](../images/rightarm4.png)
-    - **After 4 Incorrect Guesses**: ![Both Arms](../images/botharms5.png)
-    - **After 5 Incorrect Guesses**: ![Right Leg](../images/rightleg6.png)
-    - **After 6 Incorrect Guesses (Game Over)**: ![Both Legs](../images/bothlegs7.png)
+- **Initial State**: ![Outline](../images/outline1.png)
+- **After 1 Incorrect Guess**: ![Head](../images/head2.png)
+- **After 2 Incorrect Guesses**: ![Body](../images/body3.png)
+- **After 3 Incorrect Guesses**: ![Right Arm](../images/rightarm4.png)
+- **After 4 Incorrect Guesses**: ![Both Arms](../images/botharms5.png)
+- **After 5 Incorrect Guesses**: ![Right Leg](../images/rightleg6.png)
+- **After 6 Incorrect Guesses (Game Over)**: ![Both Legs](../images/bothlegs7.png)
 
 ## Main Components:
 
