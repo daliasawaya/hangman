@@ -67,5 +67,3 @@
    - Positioned on the right side of the screen.
    - Font size: 20px
    - Margin: 0 15px
-
-### End of Hangman Design System
