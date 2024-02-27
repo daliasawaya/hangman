@@ -41,22 +41,20 @@
     border: 1px solid rgb(50, 50, 50);
 }
   
-/* Adjust placeholder container positioning */
 #placeholder-container {
   position: fixed;
   top: 50%;
-  right: 15%; /* Adjust as needed */
+  right: 15%; 
   transform: translateY(-50%);
 }
 
 .placeholder-line {
-  display: inline-block; /* Display as inline-block to make them behave like lines */
-  width: 35px; /* Set the width of the lines */
-  height: 3px; /* Set the height of the lines */
+  display: inline-block; 
+  width: 35px; 
+  height: 3px; 
   background-color: black;
-  margin: 0 10px; /* Add some margin between the lines */
+  margin: 0 10px; 
 }
-
 
 #word-container {
     display: flex;
@@ -66,34 +64,31 @@
 }
 
 #correct-letter {
-  margin: 0 15px; /* Add some margin between the lines */
+  margin: 0 15px; 
   font-size: 20px;
 }
 
-/* CSS for hangman image container */
 #hangman-container {
   position: absolute;
   top: 50%;
-  left: 10%; /* Adjust the left position as needed */
+  left: 10%; 
   transform: translateY(-50%);
 }
 
-/* CSS for hangman images */
 #hangman-image {
-  width: 400px; /* Set the width of the image */
-  height: auto; /* Maintain aspect ratio */
-  /* Add any other styles you want */
+  width: 400px; 
+  height: auto; 
 }
 
 #scoreboard {
   position: fixed;
-  top: 20px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
+  top: 20px; 
+  right: 20px; 
   background-color: #ccf7ce;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif; /* Font family */
+  font-family: 'Arial', sans-serif; 
 }
 
 #scoreboard p {
@@ -104,16 +99,15 @@
   font-weight: bold;
 }
 
-/* CSS styles for the title */
 .title {
-  text-align: center; /* Center align the text */
-  font-size: 48px; /* Font size */
-  color: #4CAF50; /* Text color */
-  margin-top: 50px; /* Top margin */
-  font-family: 'Arial', sans-serif; /* Font family */
-  text-transform: uppercase; /* Uppercase text */
-  letter-spacing: 2px; /* Letter spacing */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow */
+  text-align: center; 
+  font-size: 48px; 
+  color: #4CAF50; 
+  margin-top: 50px; 
+  font-family: 'Arial', sans-serif; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
 }
 
 

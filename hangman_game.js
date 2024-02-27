@@ -131,7 +131,7 @@ function guessLetter(letter) {
     
     console.log("Guessing letter:", letter);
 
-    //find button corresponding to the guessed letter
+    //find button for the guessed letter
     const guessedLetterButton = document.querySelector(`.letter[data-letter="${letter}"]`);
     console.log("Guessed letter button:", guessedLetterButton);
 
@@ -175,10 +175,10 @@ function guessLetter(letter) {
         // Letter is not in the word, increment incorrect guesses
         incorrectGuesses++;
         console.log("incorrect guesses = "+incorrectGuesses);
-        // Update hangman display
+
         updateHangmanDisplay();
         
-        // Check for loss condition
+        // Check if lost
         if (incorrectGuesses === maxIncorrectGuesses) {
             endGame(false);
         }
@@ -210,7 +210,7 @@ function endGame(win){
 
     setTimeout(function () {
         if (confirm(message)) {
-            // If the player clicks "OK", indicating they want to play again, restart the game
+            // If the player clicks yes, then restart the game
             //startGame();
             addEventListenerToLetters();
             resetKeyboard();
