@@ -22,7 +22,7 @@ This is a simple hangman game built with HTML, CSS, and JavaScript. The player g
 ![Initial State](images/InitialState.png)
 
 - **Incorrect Guess**:
-![Incorrect Guess](images/Wronguess.png)
+![Incorrect Guess](images/WrongGuess.png)
 
 - **Correct Guess**:
 ![Correct Guess](images/CorrectGuess.png)
