@@ -11,7 +11,7 @@
 - **Letter Border Color**: ![blueviolet](https://via.placeholder.com/15/8A2BE2/000000?text=+)
 - **Guessed Letter Background Color**: ![#ccc](https://via.placeholder.com/15/cccccc/000000?text=+)
 - **Guessed Letter Text Color**: ![#888](https://via.placeholder.com/15/888888/000000?text=+)
-- **Placeholder Line Color**: ![black](https://via.placeholder.com/15/000000/000000?text=+)
+- **Placeholder Line Color**: ![rgb(245, 164, 64)](https://via.placeholder.com/15/F5A440/000000?text=+)
 - **Title Text Color**: ![#4CAF50](https://via.placeholder.com/15/4CAF50/000000?text=+)
 - **Scoreboard Background Color**: ![#ccf7ce](https://via.placeholder.com/15/ccf7ce/000000?text=+)
 
