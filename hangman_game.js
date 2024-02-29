@@ -1,5 +1,4 @@
-
-// Define variables and constants
+//variables and constants
 let wordToGuess;
 let wordLetters;
 let guessedLetters = [];
@@ -9,7 +8,7 @@ let hangmanImageElement;
 let gamesWon = 0;
 let gamesLost = 0;
 
-// Define an array of hangman image filenames
+//array of hangman image filenames
 const hangmanImages = [
     "images/outline1.png",
     "images/head2.png",
@@ -20,27 +19,25 @@ const hangmanImages = [
     "images/bothlegs7.png",
   ];
 
-// Array of words
-let words = ["APPLE", "BANANA", "ORANGE", "STRAWBERRY", "KIWI", "GRAPE", "PINEAPPLE", "WATERMELON", "BLUEBERRY", "MANGO"];
+//array of words
+let words = ["APPLE", "BANANA", "ORANGE", "STRAWBERRY", "KIWI", "GRAPE", "PINEAPPLE", "WATERMELON", "BLUEBERRY", "MANGO", "GRAPEFRUIT", "AVOCADO", "PEAR", "CHERRY", "LEMON", "COCONUT", "GUAVA", "PAPAYA"];
 
+//function to reset the game
 function startGame() {
-
-    console.log("starting game");
-
+    //choode the fruit
     wordToGuess = generateRandomWord();
+
+    //display the placeholders
     displayWordPlaceholders(wordToGuess);
 
     //removing duplicates
     wordLetters = removeDuplicates(wordLetters);
-    console.log(wordLetters);
     
     guessedLetters = [];
     incorrectGuesses = 0;
-    
-    //updateHangmanDisplay();
 }
 
-
+//function to randomly choose a fruit from the list
 function generateRandomWord() {
 
     const randomIndex = Math.floor(Math.random() * words.length);
@@ -49,10 +46,12 @@ function generateRandomWord() {
     return words[randomIndex];
 }
 
+//function to display the placeholders for the new word
 function displayWordPlaceholders(word) {
+
     wordLetters = word.split("");
     const placeholderContainer = document.getElementById('placeholder-container');
-    placeholderContainer.innerHTML = ''; // Clear previous placeholders
+    placeholderContainer.innerHTML = ''; //clear previous placeholders
 
     for (let i = 0; i < word.length; i++) {
         const placeholder = document.createElement('span');
@@ -61,11 +60,10 @@ function displayWordPlaceholders(word) {
     }
 }
 
-
+//function to update the hangman display image
 function updateHangmanDisplay(){
-    console.log("updateHangmanDisplay");
 
-    // Update the hangman image source based on the number of incorrect guesses
+    //update the hangman image source based on the number of incorrect guesses
     switch(incorrectGuesses){
         case 0: 
             hangmanImageElement.src = 'images/outline1.png';
@@ -91,13 +89,10 @@ function updateHangmanDisplay(){
         default:
             console.log(incorrectGuesses);
             break;
-    }
-    
-    
+    }      
 }
 
-//adds event listener to the letters
-//and starts the game
+//adds event listener to the letters and starts the game
 function addEventListenerToLetters() {
     const letterButtons = document.querySelectorAll('.letter');
 
@@ -108,6 +103,7 @@ function addEventListenerToLetters() {
             guessLetter(letter);
         });
     });
+
     startGame();
 }
 
@@ -120,20 +116,14 @@ document.addEventListener('DOMContentLoaded', function() {
 //function to handle guessing a letter
 function guessLetter(letter) {
 
-   // console.log("*** NEW GUESS ***");
-
     //check if the letter has already been guessed
     if (guessedLetters.includes(letter)) {
-        //letter was already guessed, do nothing
-       // console.log("you already guessed this letter");
+        console.log("you already guessed this letter");
         return;
     }    
     
-    console.log("Guessing letter:", letter);
-
     //find button for the guessed letter
     const guessedLetterButton = document.querySelector(`.letter[data-letter="${letter}"]`);
-    console.log("Guessed letter button:", guessedLetterButton);
 
     //check if button was found
     if (guessedLetterButton) {
@@ -145,36 +135,29 @@ function guessLetter(letter) {
     
     //add the letter to the list of guessed letters
     guessedLetters.push(letter);
-    console.log("Guessed letters:", guessedLetters);
     
     //check if letter is in the word
     if (wordLetters.includes(letter)) {
-        // Letter is in the word, update display
-        console.log("THE WORD INCLUDES THIS LETTER");
-        //updateWordDisplay(letter);
-
 
         for (let i = 0; i < wordToGuess.length; i++) {
             if (wordToGuess[i] === letter) {
                 const placeholders = document.querySelectorAll('#placeholder-container .placeholder-line');
-                console.log(placeholders[i]);
-                placeholders[i].textContent = letter; // Replace the placeholder with the guessed letter
-                console.log(placeholders[i].textContent);
+                placeholders[i].textContent = letter; //replace the placeholder with the guessed letter
+                placeholders[i].classList.add('correct-letter');
             }
         }
 
-        // Remove the guessed letter from the wordLetters array
+        //remove the guessed letter from the wordLetters array
         wordLetters = wordLetters.filter(l => l !== letter);
 
-        // Check if all letters have been guessed
+        //check if all letters have been guessed
         if (wordLetters.length === 0) {
             endGame(true);
         }
 
     } else {
-        // Letter is not in the word, increment incorrect guesses
+        //letter is not in the word, increment incorrect guesses
         incorrectGuesses++;
-        console.log("incorrect guesses = "+incorrectGuesses);
 
         updateHangmanDisplay();
         
@@ -184,15 +167,13 @@ function guessLetter(letter) {
         }
     }
 
-
 }
 
-function isWordGuessed(wordToGuess, guessedLetters){
-    //console.log("in isWordGuessed");
-}
-
+//handles the end of a game: win or loss
 function endGame(win){
     let message;
+
+    //sets the message based on win or loss
     if (win) {
         message = "Congratulations! You guessed the word!";
     } else {
@@ -201,6 +182,7 @@ function endGame(win){
     
     message += "\n\nDo you want to play again?";
     
+    //update the scoreboard
     if (win) {
         updateScoreboard(true);
     }
@@ -208,41 +190,62 @@ function endGame(win){
         updateScoreboard(false);
     }
 
+    //ask user if they want to play again (0.5s after end of game)
     setTimeout(function () {
-        if (confirm(message)) {
-            // If the player clicks yes, then restart the game
-            //startGame();
+        if (confirm(message)) {  //if yes, reset the game   
             addEventListenerToLetters();
             resetKeyboard();
-            incorrectGuesses = 0;
             updateHangmanDisplay();
         } 
     }, 500);
     
-    
 }
 
+//reset the keyboard
 function resetKeyboard() {
     const letterButtons = document.querySelectorAll('.letter');
 
-    // Loop through each letter button and remove the 'guessed' class
+    //loop through each letter button and remove the 'guessed' class
     letterButtons.forEach(button => {
         button.classList.remove('guessed');
     });
 }
 
+//removes duplicates from an array
 function removeDuplicates(arr) {
     return arr.filter((item,
         index) => arr.indexOf(item) === index);
 }
 
-// Function to update the scoreboard
+//function to update the scoreboard
 function updateScoreboard(win) {
+    
     if (win) {
         gamesWon++;
     } else {
         gamesLost++;
     }
+    
     document.getElementById('gamesWon').textContent = gamesWon;
     document.getElementById('gamesLost').textContent = gamesLost;
+}
+
+// Function to display a pop-up window with a message and buttons
+function displayPopup(message, buttonText, buttonCallback) {
+    const popupContainer = document.createElement('div');
+    popupContainer.classList.add('popup-container');
+
+    const messageElement = document.createElement('p');
+    messageElement.classList.add('popup-message');
+    messageElement.textContent = message;
+
+    const buttonElement = document.createElement('button');
+    buttonElement.classList.add('popup-button');
+    buttonElement.textContent = buttonText;
+    buttonElement.addEventListener('click', buttonCallback);
+
+    popupContainer.appendChild(messageElement);
+    popupContainer.appendChild(buttonElement);
+
+    document.body.appendChild(popupContainer);
 }
