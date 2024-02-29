@@ -45,7 +45,7 @@
 2. **Word Display**:
    - Displayed as placeholders for each letter in the word to guess.
    - Font size: 20px
-   - Font color: ![black](https://via.placeholder.com/15/000000/000000?text=+)
+   - Font color: ![rgb(245, 164, 64)](https://via.placeholder.com/15/F5A440/000000?text=+)
 
 3. **Keyboard**:
    - A row of buttons representing each letter of the alphabet.
