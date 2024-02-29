@@ -18,15 +18,20 @@ This is a simple hangman game built with HTML, CSS, and JavaScript. The player g
 
 ## Screenshots
 
+- **Initial State**:
 ![Initial State](images/InitialState.png)
 
-![Incorrect Guess](images/iWronguess.png)
+- **Incorrect Guess**:
+![Incorrect Guess](images/Wronguess.png)
 
+- **Correct Guess**:
 ![Correct Guess](images/CorrectGuess.png)
 
-![Game Over - Win](images/iWronguess.png)
+- **Game Over - Win**:
+![Game Over - Win](images/GameOverWin.png)
 
-![Game Over - Loss](images/CorrectGuess.png)
+- **Game Over - Loss**:
+![Game Over - Loss](images/GameOverLoss.png)
 
 ## Scoreboard
 
