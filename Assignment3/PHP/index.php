@@ -1,8 +1,6 @@
 <?php
 session_start();
-/**
- * All words
- */
+//all possible fruits to be guessed
 $words = array(
     "APPLE", "BANANA", "ORANGE", "STRAWBERRY",
     "KIWI", "GRAPE", "PINEAPPLE", "WATERMELON",
@@ -10,7 +8,8 @@ $words = array(
     "PEAR", "CHERRY", "LEMON", "COCONUT", "GUAVA",
     "PAPAYA"
 );
-// Setting up the leaderboard
+
+//setting up the leaderboard
 $leaderboard = array();
 function read_leaderboard()
 {
@@ -18,9 +17,7 @@ function read_leaderboard()
 }
 read_leaderboard();
 
-/**
- * Initializes the hidden word
- */
+//initializes the word to be guessed
 function init_guessed()
 {
     $len = strlen($GLOBALS['words'][$_SESSION['w_i']]);
@@ -30,24 +27,22 @@ function init_guessed()
 }
 
 
-/**
- * Initializes the required items
- */
+//initializes the required items
 function init_game()
 {
-    // The index of the word
+    //the index of the word
     if (!isset($_SESSION['w_i']))
         $_SESSION['w_i'] = array_rand($GLOBALS['words']);
 
-    // How many incorrect guesses the player had in this round
+    //how many incorrect guesses the player had in this round
     if (!isset($_SESSION['incorrect']))
         $_SESSION['incorrect'] = 0;
 
-    // How many times the player could guess correctly
+    //how many times the player could guess correctly
     if (!isset($_SESSION['score']))
         $_SESSION['score'] = 0;
 
-    // total games the user has played
+    //total games the user has played
     if (!isset($_SESSION['total']))
         $_SESSION['total'] = 0;
 
@@ -61,9 +56,7 @@ function init_game()
 
 init_game();
 
-/**
- * Would be called if the game is supposed to be reset.
- */
+//would be called if the game is supposed to be reset
 function reset_game()
 {
     $_SESSION['correct'] = $GLOBALS['words'][$_SESSION['w_i']];
@@ -73,10 +66,9 @@ function reset_game()
     init_guessed();
 }
 
-/**
- * Checks to see if the game is over. If so, this would
- * reset the game and update the point as appropriate.
- */
+
+//checks to see if the game is over
+//if so, reset the game and update points
 function check_over()
 {
     if ($_SESSION['incorrect'] >= 6)
@@ -94,12 +86,7 @@ function check_over()
     }
 }
 
-/**
- * Recreates the word after the guess.
- * @param g: The guessed character
- * @return the rebuilt word with that character
- * replacing the appropriate hidden spots.
- */
+//recreates the word after each guess
 function rebuild_guess($g)
 {
     $guess = '';
@@ -113,16 +100,13 @@ function rebuild_guess($g)
     return $guess;
 }
 
-/**
- * Function that would be called for making a guess.
- */
+//called for making a guess
 function guess_word()
 {
     $json_res = file_get_contents('php://input');
     $json_data = json_decode($json_res, true);
 
-    // Error handling and making sure the same character
-    // would not be requested twice
+    //error handling and making sure the same character would not be requested twice
     if (!isset($json_data['guess'])) {
         get_stats();
     }
@@ -134,7 +118,7 @@ function guess_word()
 
     $_SESSION['guessed_chars'] .= $json_data['guess'];
     
-    // This means the guess was wrong
+    //this means the guess was wrong
     if ($guess === $_SESSION['guess']) {
         $_SESSION['incorrect']++;
         check_over();
@@ -147,9 +131,7 @@ function guess_word()
     get_stats();
 }
 
-/**
- * Provides the stats of the game as a response.
- */
+//provides the stats of the game as a response
 function get_stats()
 {
     session_commit();
@@ -166,9 +148,7 @@ function get_stats()
     exit();
 }
 
-/**
- * This would provide the corresponding images, css sheets, or js files
- */
+//get the corresponding images, css sheets, or js files
 if (
     substr($_SERVER['REQUEST_URI'], 0, 7) == '/images' ||
     substr($_SERVER['REQUEST_URI'], 0, 5) == '/css/' ||
@@ -178,15 +158,13 @@ if (
     exit();
 }
 
-/**
- * Logs into the application
- */
+//logs in
 function runLogin() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $json_res = file_get_contents('php://input');
         $json_data = json_decode($json_res, true);
         $username = $json_data['username'];
-        // If not currently in server, the name is valid
+        //if not currently in server, the name is valid
         
         if (!isset($GLOBALS['leaderboard'][$username])) {
             $_SESSION['username'] = $json_data['username'];
@@ -206,27 +184,23 @@ function runLogin() {
     }
 }
 
-/**
- * Provides all of the scores.
- */
+//gives all of the scores
 function get_all_scores()
 {
     echo json_encode($GLOBALS['leaderboard']);
     exit();
 }
 
-/**
- * Handling each request.
- */
+//handling each request
 switch ($_SERVER['REQUEST_URI'])
 {
-    case '/guess': // should be a post request for guessing the word
+    case '/guess': //should be a post request for guessing the word
         guess_word();
         break;
-    case '/stats': // should be a get request to provide the stats.
+    case '/stats': //should be a get request to provide the stats
         get_stats();
         break;
-    case '/': // Should provide index.html
+    case '/': //should provide index.html
         if (!isset($_SESSION['username'])) {
             header('Location:/login');
             die();
@@ -241,13 +215,13 @@ switch ($_SERVER['REQUEST_URI'])
         runLogin();
         require __DIR__ . '/../Client/login.html';
         break;
-    case '/leaderboard': // shows the top 10 highest scores
+    case '/leaderboard': //shows the top 10 highest scores
         require __DIR__ . '/../Client/leaderboard.html';
         break;
-    case '/tops': // Provides the scores in JSON format
+    case '/tops': //gives scores in JSON format
         get_all_scores();
         break;
-    default:    // Should display the request is invalid.
+    default:    //should display the request is invalid
         require __DIR__ . '/../Client/404.html';
         break;
 }
